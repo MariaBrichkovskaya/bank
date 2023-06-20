@@ -7,9 +7,10 @@
     <modules>
         <module>eureka-server</module>
         <module>eureka-client</module>
+        <module>api-gateway</module>
     </modules>
 
-    <groupId>org.bank</groupId>
+    <groupId>com.bank</groupId>
     <artifactId>money-bank</artifactId>
     <version>1.0-SNAPSHOT</version>
 
