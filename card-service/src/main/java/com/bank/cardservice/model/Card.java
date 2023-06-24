@@ -15,7 +15,7 @@ public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @Column(columnDefinition = "varchar(16)",unique = true)
+    @Column(columnDefinition = "varchar(16)")
     String number;
     @Column(name = "date_of_issue")
     LocalDate issueDate;
