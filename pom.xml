@@ -9,6 +9,7 @@
         <module>api-gateway</module>
         <module>config-server</module>
         <module>card-service</module>
+        <module>user_service</module>
     </modules>
 
     <groupId>com.bank</groupId>
