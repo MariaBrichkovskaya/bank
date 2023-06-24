@@ -1,10 +1,10 @@
-package com.bank.eurekaclient;
+package com.bank.cardservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EurekaClientApplicationTests {
+class CardServiceApplicationTests {
 
     @Test
     void contextLoads() {

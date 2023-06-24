@@ -6,9 +6,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>eureka-server</module>
-        <module>eureka-client</module>
         <module>api-gateway</module>
         <module>config-server</module>
+        <module>card-service</module>
     </modules>
 
     <groupId>com.bank</groupId>
