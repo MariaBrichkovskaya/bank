@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")   //вот тут хз
+@RequestMapping("/cards")   //вот тут хз
 @RequiredArgsConstructor
 public class CardController {
     private final CardService cardService;

@@ -10,6 +10,7 @@
         <module>api-gateway</module>
         <module>config-server</module>
         <module>user-service</module>
+        <module>info-service</module>
     </modules>
 
     <groupId>org.bank</groupId>
