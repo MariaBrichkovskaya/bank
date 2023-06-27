@@ -6,12 +6,14 @@ import com.bank.user_service.services.impl.UserServiceImp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/users")
 public class UserController {
@@ -23,9 +25,10 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
     @GetMapping("/{id}")
-    public ResponseEntity<UserDTO> getUserById(@PathVariable("id") Long id) {
+    public String getUserById(@PathVariable("id") Long id, Model model) {
         UserDTO userDTO = userService.userToDTO(userService.getUserById(id).get());
-        return ResponseEntity.ok(userDTO);
+        model.addAttribute("client", userDTO);
+        return "user-info";
     }
 
 
