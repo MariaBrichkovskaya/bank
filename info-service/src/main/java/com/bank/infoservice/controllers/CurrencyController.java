@@ -1,7 +1,7 @@
 package com.bank.infoservice.controllers;
 
 import com.bank.infoservice.dto.CurrencyDTO;
-import com.bank.infoservice.services.CurrencyService;
+import com.bank.infoservice.services.impl.CurrencyServiceImp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ import java.text.ParseException;
 @RequiredArgsConstructor
 @RequestMapping("/currency")
 public class CurrencyController {
-    private final CurrencyService currencyService;
+    private final CurrencyServiceImp currencyService;
 
     @GetMapping("/{message}")
     public ResponseEntity<CurrencyDTO> getCurrency(@PathVariable String message) throws IOException, ParseException {

@@ -3,19 +3,19 @@ package com.bank.user_service.dto;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.Set;
+import java.time.LocalDate;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
-
+public class CardDTO {
     Long id;
-    String name;
-    String surname;
-    String email;
-    String password;
-    Set<CardDTO> cards;
+    String number;
+    LocalDate issueDate;
+    LocalDate expiryDate;
+    Long clientId;
+    Boolean locked;
+    Float balance;
 }
