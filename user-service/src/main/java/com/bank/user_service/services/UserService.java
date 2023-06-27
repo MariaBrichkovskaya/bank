@@ -1,4 +1,4 @@
-package com.bank.user_service.services.interfaces;
+package com.bank.user_service.services;
 
 import com.bank.user_service.dto.UserDTO;
 

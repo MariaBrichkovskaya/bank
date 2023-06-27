@@ -2,7 +2,7 @@ package com.bank.user_service.controllers;
 
 import com.bank.user_service.dto.UserDTO;
 import com.bank.user_service.models.User;
-import com.bank.user_service.services.UserServiceImp;
+import com.bank.user_service.services.impl.UserServiceImp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +23,9 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(userService.getUserById(id).get());
+    public ResponseEntity<UserDTO> getUserById(@PathVariable("id") Long id) {
+        UserDTO userDTO = userService.userToDTO(userService.getUserById(id).get());
+        return ResponseEntity.ok(userDTO);
     }
 
 

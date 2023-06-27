@@ -13,7 +13,6 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 public class User {
     @Id
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @Column(name = "name")
