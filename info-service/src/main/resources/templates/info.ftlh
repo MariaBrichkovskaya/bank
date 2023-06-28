@@ -21,9 +21,7 @@
 </head>
 <body>
 <h1>Выбор значения из вложенного списка</h1>
-<select id="select" onchange="showData()"
-        data-currency='${currency}'
-        data-currencies='${currencies?map(c -> c.toJsonString())?join(",")}'>
+<select id="select" onchange="showData()">
     <option value="">Выберите валюту</option>
     <#list currencies as cur>
         <option value="${cur.id}">${cur}</option>

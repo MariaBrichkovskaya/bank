@@ -15,8 +15,6 @@ public enum CurrEnum {
     CNY("462");
 
     private String id;
-    public String toJsonString() {
-        return new Gson().toJson(this);
-    }
+
 
 }
