@@ -16,20 +16,28 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-//@RequestMapping("/currency")
 public class CurrencyController {
     private final CurrencyServiceImp currencyService;
 
-    @GetMapping
+    @GetMapping("/currency")
     public String getCurrency(@RequestParam(required = false) String message, Model model) throws IOException, ParseException {
 
-        CurrencyDTO currency= currencyService.getCurrencyRate(message);
+        CurrencyDTO currency = currencyService.getCurrencyRate(message);
         List<CurrEnum> currencies= List.of(CurrEnum.values());
         model.addAttribute("currency",currency);
         model.addAttribute("currencies",currencies);
         model.addAttribute("message",message);
         return "info";
         //return ResponseEntity.ok(currencyService.getCurrencyRate(message));  //поиск по id в процессе переделать на выбор валют из списка
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<String> getCurrencyInfo(@RequestParam(required = false) String message) throws IOException, ParseException {
+        CurrencyDTO currencyDTO = currencyService.getCurrencyRate(message);
+        return ResponseEntity.ok(
+                currencyDTO.getCur_OfficialRate() + " BYN за "
+                        + currencyDTO.getCur_Scale() + " "
+                        + currencyDTO.getCur_Name());
     }
 
 }

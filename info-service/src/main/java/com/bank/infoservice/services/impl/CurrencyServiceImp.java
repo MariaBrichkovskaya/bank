@@ -25,13 +25,13 @@ public class CurrencyServiceImp implements CurrencyService {
                 result +=scanner.nextLine();
             }
             JSONObject object = new JSONObject(result);
-
             model.setCur_ID(object.getInt("Cur_ID"));
             model.setDate(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(object.getString("Date")));
             model.setCur_Abbreviation(object.getString("Cur_Abbreviation"));
             model.setCur_Scale(object.getInt("Cur_Scale"));
             model.setCur_Name(object.getString("Cur_Name"));
             model.setCur_OfficialRate(object.getDouble("Cur_OfficialRate"));
+            //if(model.getCur_ID()==null) return null;
         } catch (FileNotFoundException e){ // что-то замутить
 
         }

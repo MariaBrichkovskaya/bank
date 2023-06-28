@@ -2,30 +2,20 @@
 <html>
 <head>
     <title>Выбор значения из вложенного списка</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"><link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <script type="text/javascript" >
 
         function showData() {
-            const currId = [];
-            currId.push(431, 451, 456,452,462);
             var select = document.getElementById("select");
             var selectedValue = select.options[select.selectedIndex].value;
             var dataDiv = document.getElementById("dataDiv");
-
-            var currencies = select.getAttribute("data-currencies").split(",").map(function(curr) {
-                return JSON.parse(curr);
-            });
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "?message=" + selectedValue, true);
-            xhr.send();
-            var currency=select.getAttribute("data-currency");
-            for (value of currId){
-                if(value==selectedValue){
-                    dataDiv.innerHTML = "Вы выбрали "+currencies.at(currId.indexOf(value));
-                    //dataDiv.innerHTML =currency;
-                    //dataDiv.innerHTML =selectedValue;
-                }
-            }
-
+            const url = "/?message=" + selectedValue;
+            fetch(url)
+                .then(
+                    response => response.text()
+                ).then(
+                text => dataDiv.innerHTML = text
+            );
         }
     </script>
 </head>
@@ -39,11 +29,6 @@
         <option value="${cur.id}">${cur}</option>
     </#list>
 </select>
-
-<br><div id="dataDiv"></div>
-<#if message?has_content>
-    <p>${message}</p>
-</#if>
-
+<br><br><div id="dataDiv"></div>
 </body>
 </html>

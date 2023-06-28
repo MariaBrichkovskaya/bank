@@ -11,8 +11,8 @@ import java.util.Date;
 public class CurrencyDTO {
     Integer cur_ID;
     Date date;
-    String cur_Abbreviation;
-    Integer cur_Scale;
-    String cur_Name;
-    Double cur_OfficialRate;
+    String cur_Abbreviation = "null";
+    Integer cur_Scale = 0;
+    String cur_Name = "null";
+    Double cur_OfficialRate = 0.0;
 }
