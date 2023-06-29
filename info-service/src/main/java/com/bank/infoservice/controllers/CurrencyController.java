@@ -2,9 +2,9 @@ package com.bank.infoservice.controllers;
 
 import com.bank.infoservice.dto.CurrencyDTO;
 import com.bank.infoservice.enums.CurrEnum;
-import com.bank.infoservice.services.CurrencyService;
 import com.bank.infoservice.services.impl.CurrencyServiceImp;
 import lombok.RequiredArgsConstructor;
+import org.json.JSONArray;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +31,10 @@ public class CurrencyController {
         //return ResponseEntity.ok(currencyService.getCurrencyRate(message));  //поиск по id в процессе переделать на выбор валют из списка
     }
 
+    @GetMapping("/dynamic")
+    public ResponseEntity<String> getDynamic(@RequestParam(required = false) String message)throws IOException{
+        return ResponseEntity.ok(currencyService.getCurrencyDynamic(message).toString()) ;
+    }
     @GetMapping("/")
     public ResponseEntity<String> getCurrencyInfo(@RequestParam(required = false) String message) throws IOException, ParseException {
         CurrencyDTO currencyDTO = currencyService.getCurrencyRate(message);
