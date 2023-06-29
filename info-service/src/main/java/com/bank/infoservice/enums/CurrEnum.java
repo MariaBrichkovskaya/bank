@@ -1,6 +1,6 @@
 package com.bank.infoservice.enums;
 
-import com.google.gson.Gson;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
