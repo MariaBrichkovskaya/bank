@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html >
 <head>
     <title>Выбор значения из вложенного списка</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon"><link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="%PUBLIC_URL%/static/favicon.ico" />
     <script type="text/javascript" >
 
         function showData() {
