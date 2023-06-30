@@ -19,7 +19,7 @@ import java.util.List;
 public class CurrencyController {
     private final CurrencyServiceImp currencyService;
 
-    @GetMapping("/currency")
+    @GetMapping("/")
     public String getCurrency(@RequestParam(required = false) String message, Model model) throws IOException, ParseException {
 
         CurrencyDTO currency = currencyService.getCurrencyRate(message);
@@ -31,11 +31,16 @@ public class CurrencyController {
         //return ResponseEntity.ok(currencyService.getCurrencyRate(message));  //поиск по id в процессе переделать на выбор валют из списка
     }
 
+    @GetMapping("/consultant")
+    public String consultantPage() {
+        return "socket";
+    }
+
     @GetMapping("/dynamic")
     public ResponseEntity<String> getDynamic(@RequestParam(required = false) String message)throws IOException{
         return ResponseEntity.ok(currencyService.getCurrencyDynamic(message).toString()) ;
     }
-    @GetMapping("/")
+    @GetMapping("/currency")
     public ResponseEntity<String> getCurrencyInfo(@RequestParam(required = false) String message) throws IOException, ParseException {
         CurrencyDTO currencyDTO = currencyService.getCurrencyRate(message);
         return ResponseEntity.ok(
