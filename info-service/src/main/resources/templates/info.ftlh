@@ -37,7 +37,7 @@
     </script>
 </head>
 <body>
-<h1>Информация о курсах валют</h1>
+<h1 style="text-align: center">Информация о курсах валют</h1>
 <select id="select" onchange="updateInfo()">
     <option value="">Выберите валюту</option>
     <#list currencies as cur>
@@ -51,10 +51,17 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 <script>
+    var options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
     function showChart(text) {
         let dailyRateArray = JSON.parse(text);
-        let dateArray = dailyRateArray.map(dailyRate => dailyRate.Date)
-        let rateArray = dailyRateArray.map(dailyRate => dailyRate.Cur_OfficialRate)
+        let dateArray = dailyRateArray.map(dailyRate =>
+            new Date(dailyRate.Date).toLocaleString("ru", options)
+        );
+        let rateArray = dailyRateArray.map(dailyRate => dailyRate.Cur_OfficialRate);
         let ctx = document.querySelector('#myChart').getContext('2d');
         let myChart = new Chart(ctx, {
             type: 'line',
@@ -63,16 +70,32 @@
                 datasets: [{
                     label: 'Динамика выбранной валюты',
                     data: rateArray,
-                    backgroundColorColor: [
-                        'white'
+                    backgroundColor: [
+                        'rgba(0,0,0,0)'
                     ],
+                    pointBorderColor: '#b61717',
+
+                    lineTension:0,
                     borderColor: [
-                        '#80d8ff' // у каждой точки может быть свой цвет
+                        '#b61717',
+
                     ],
-                    borderWidth: 4
+                    borderWidth: 3,
+
                 }]
             },
-            options: {}
+            options: {
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.yLabel;
+                        }
+                    }
+                },
+            }
 
         })
     }
