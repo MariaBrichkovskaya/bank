@@ -32,7 +32,7 @@ public class CurrencyController {
 
     @GetMapping("/consultant")
     public String consultantPage() {
-        return "consultant";
+        return "consultant.html";
     }
 
     @GetMapping("/dynamic")
