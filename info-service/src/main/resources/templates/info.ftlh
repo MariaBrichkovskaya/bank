@@ -7,6 +7,7 @@
     <script src="js/currency.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <script src="js/chart.js"></script>
+    <link rel="icon" href="favicon.png">
 </head>
 
 <body onload="init()">
@@ -19,7 +20,6 @@
     </select><br><br>
 
 <div id="dataDiv"></div><br><br>
-
 <div id="currencyChart" style="display: none">
     <canvas id="myChart" width="200px" height="50px"></canvas>
 </div>
