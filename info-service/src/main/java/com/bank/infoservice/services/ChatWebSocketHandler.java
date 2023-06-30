@@ -5,6 +5,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +17,10 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
     static {
         responses.put("привет", "Здравствуйте! Чем я могу вам помочь?");
         responses.put("баланс", "Ваш текущий баланс составляет 0 рублей нищеброд.");
+        responses.put("помощь","помоги себе сам");
+        responses.put("карты","вывод карт замутить");
+        responses.put("информация","Банк денег самый крутой банк");
+
     }
 
     @Override

@@ -14,7 +14,7 @@ public enum CurrEnum {
     PLN("452"),
     CNY("462");
 
-    private String id;
+    private final String id;
 
 
 }

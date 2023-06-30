@@ -4,7 +4,6 @@ import com.bank.infoservice.dto.CurrencyDTO;
 import com.bank.infoservice.enums.CurrEnum;
 import com.bank.infoservice.services.impl.CurrencyServiceImp;
 import lombok.RequiredArgsConstructor;
-import org.json.JSONArray;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +32,7 @@ public class CurrencyController {
 
     @GetMapping("/consultant")
     public String consultantPage() {
-        return "socket";
+        return "consultant";
     }
 
     @GetMapping("/dynamic")

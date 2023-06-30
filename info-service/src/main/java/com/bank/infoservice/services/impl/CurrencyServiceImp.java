@@ -2,7 +2,6 @@ package com.bank.infoservice.services.impl;
 
 import com.bank.infoservice.dto.CurrencyDTO;
 import com.bank.infoservice.services.CurrencyService;
-import org.apache.http.protocol.HttpDateGenerator;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -27,14 +26,14 @@ public class CurrencyServiceImp implements CurrencyService {
     }
     public JSONArray getCurrencyDynamic(String message) throws IOException{
         try {
-            URL url = new URL("https://api.nbrb.by/exrates/rates/dynamics/" + message+"?startDate="+getStartDate()+"&endDate="+httpDateFormat.format(new Date()));
+            String dynamicUrl = "https://api.nbrb.by/exrates/rates/dynamics/";
+            URL url = new URL( dynamicUrl + message+"?startDate="+getStartDate()+"&endDate="+httpDateFormat.format(new Date()));
             Scanner scanner = new Scanner((InputStream) url.getContent());
-            String result = "";
+            StringBuilder result = new StringBuilder();
             while (scanner.hasNext()){
-                result +=scanner.nextLine();
+                result.append(scanner.nextLine());
             }
-            JSONArray jsonArray = new JSONArray(result);
-            return jsonArray;
+            return new JSONArray(result.toString());
 
 
         } catch (FileNotFoundException e){ // что-то замутить
@@ -45,14 +44,15 @@ public class CurrencyServiceImp implements CurrencyService {
     }
     public CurrencyDTO getCurrencyRate(String message) throws IOException, ParseException {
         try {
-            URL url = new URL(" https://api.nbrb.by/exrates/rates/" + message);
+            String currencyUrl = " https://api.nbrb.by/exrates/rates/";
+            URL url = new URL(currencyUrl + message);
 
             Scanner scanner = new Scanner((InputStream) url.getContent());
-            String result = "";
+            StringBuilder result = new StringBuilder();
             while (scanner.hasNext()){
-                result +=scanner.nextLine();
+                result.append(scanner.nextLine());
             }
-            JSONObject object = new JSONObject(result);
+            JSONObject object = new JSONObject(result.toString());
             model.setCur_ID(object.getInt("Cur_ID"));
             model.setDate(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(object.getString("Date")));
             model.setCur_Abbreviation(object.getString("Cur_Abbreviation"));
