@@ -1,7 +1,7 @@
 function updateInfo() {
-    var select = document.getElementById("select");
-    var selectedValue = select.options[select.selectedIndex].value;
-    var dataDiv = document.getElementById("dataDiv");
+    const select = document.getElementById("select");
+    const selectedValue = select.options[select.selectedIndex].value;
+    const dataDiv = document.getElementById("dataDiv");
     if (selectedValue === "") {
         dataDiv.innerHTML = "";
         document.getElementById("currencyChart").style.display="none";

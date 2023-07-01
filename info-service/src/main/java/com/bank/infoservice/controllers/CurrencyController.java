@@ -30,17 +30,12 @@ public class CurrencyController {
         //return ResponseEntity.ok(currencyService.getCurrencyRate(message));  //поиск по id в процессе переделать на выбор валют из списка
     }
 
-    @GetMapping("/consultant")
-    public String consultantPage() {
-        return "consultant.html";
-    }
-
     @GetMapping("/dynamic")
-    public ResponseEntity<String> getDynamic(@RequestParam(required = false) String message)throws IOException{
+    public ResponseEntity<String> getDynamic(@RequestParam(required = false) String message){
         return ResponseEntity.ok(currencyService.getCurrencyDynamic(message).toString()) ;
     }
     @GetMapping("/currency")
-    public ResponseEntity<String> getCurrencyInfo(@RequestParam(required = false) String message) throws IOException, ParseException {
+    public ResponseEntity<String> getCurrencyInfo(@RequestParam(required = false) String message) throws ParseException {
         CurrencyDTO currencyDTO = currencyService.getCurrencyRate(message);
         return ResponseEntity.ok(
                 currencyDTO.getCur_OfficialRate() + " BYN за "
