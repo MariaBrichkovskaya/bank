@@ -170,3 +170,47 @@
     clear: both;
     margin-bottom: 70px;
 }
+
+.consultant-msg {
+    background-color: white;
+    border-radius: 5px;
+    width: fit-content;
+    /*padding-right: 5px;
+    padding-left: 5px;*/
+    padding: 7px;
+    /*margin-bottom: 10px;
+    background: white;
+    padding: 10px 15px 10px 15px;
+    color: #666;
+    max-width: 75%;
+    float: left;
+    margin-left: 10px;
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 30px;*/
+}
+
+.user-msg {
+    background-color: #5a5eb9;
+    color: white;
+    width: fit-content;
+    border-radius: 5px;
+    text-align: right;
+    margin-bottom: 10px;
+    padding: 7px;
+    /*padding-right: 5px;
+    padding-left: 5px;*/
+
+    /*float: right;margin-right: 10px;background: #5a5eb9;color: white;
+
+    margin-bottom: 10px;
+    background: white;
+    padding: 10px 15px 10px 15px;
+    color: #666;
+    max-width: 75%;
+    float: right;
+    margin-right: 10px;
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 30px;*/
+}

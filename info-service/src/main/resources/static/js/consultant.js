@@ -1,17 +1,18 @@
 function showConsultantButton() {
-    document.getElementById("button").style.display="block";
+    document.getElementById("chat-circle").style.display="block";
 }
-setTimeout(showConsultantButton,5000);
+setTimeout(showConsultantButton,1000);
 let ws;
 function init() {
     ws = new WebSocket("ws://localhost:9090/chat");
     ws.onopen = function (event) {
-        const textarea = document.getElementById("messages");
-        textarea.value = "Вас приветствует онлайн консультант" + "\n\n";
+        const textarea = document.getElementById("textarea");
+        textarea.innerHTML = "<p class='consultant-msg'>Вас приветствует онлайн консультант</p>";
+        //textarea.innerHTML="<p>Вас приветствует онлайн консультант</p>"
     }
     ws.onmessage = function(event) {
-        const $textarea = document.getElementById("messages");
-        $textarea.value = $textarea.value + event.data + "\n\n";
+        const textarea = document.getElementById("textarea");
+        textarea.innerHTML = textarea.innerHTML + "<p class='consultant-msg'>"+event.data+"</p>";
     };
     ws.onclose = function (event) {
     }
@@ -20,10 +21,10 @@ function init() {
     <div className="fc-close-background"></div>
     <i className="material-icons fc-close-icon" translate="no">cancel</i></button>*/
 function sendMessage() {
-    const messageField = document.getElementById("message");
+    const messageField = document.getElementById("chat-input");
     ws.send(messageField.value);
-    const textArea = document.getElementById("messages");
-    textArea.value = textArea.value + "Вы: " + messageField.value + "\n";
-    messageField.value = '';
+    const textArea = document.getElementById("textarea");
+    textArea.innerHTML = textArea.innerHTML + "<p class='user-msg'>" + messageField.value + "</p>";
+    messageField.value="";
     return false;
 }

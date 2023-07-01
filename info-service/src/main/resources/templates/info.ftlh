@@ -31,24 +31,8 @@
     <canvas id="myChart" width="90%" height="30%"></canvas>
 </div>
 
-<div style="display: none" id="button">
-<a href="#dialog"><button>Онлайн консультант</button></a>
-</div>
-
-<div id="dialog" class="dialog" >
-        <div id="window" class="window">
-            <div id="chatbox">
-                <textarea id="messages" rows="20" cols="50" readonly="readonly"></textarea>
-            </div>
-            <form onsubmit="return sendMessage()">
-                <input type="text" id="message" size="40"/>
-                <input type="button" value="Отправить" onclick="sendMessage()"/>
-            </form>
-            <a href="#" class="close">Закрыть окно</a>
-        </div>
-</div>
-<div id="body">
-    <div id="chat-circle" class="btn btn-raised">
+<div id="body" >
+    <div id="chat-circle" style="display: none" class="btn btn-raised">
         <div id="chat-overlay"></div>
         <i class="material-icons">speaker_phone</i>
     </div>
@@ -60,14 +44,13 @@
         </div>
         <div class="chat-box-body">
             <div class="chat-box-overlay"></div>
-            <div class="chat-logs">
-
+            <div class="chat-logs" id="textarea">
             </div>
         </div>
         <div class="chat-input">
             <form onsubmit="return sendMessage()">
                 <input type="text" id="chat-input" placeholder="Send a message...">
-                <button type="submit" class="chat-submit" id="chat-submit" onclick="sendMessage()">
+                <button class="chat-submit" id="chat-submit">
                     <i class="material-icons">send</i>
                 </button>
             </form>
