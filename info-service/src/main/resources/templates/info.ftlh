@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <link rel='stylesheet' href= "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css">
+    <link rel='stylesheet' href= 'https://fonts.googleapis.com/icon?family=Material+Icons'>
+    <link rel="stylesheet" href="css/index.css">
     <title>MONEY-BANK</title>
     <link rel="stylesheet" href="css/consultant.css" type="text/css">
     <script src="js/consultant.js"></script>
@@ -21,7 +28,7 @@
 
 <div id="dataDiv"></div><br><br>
 <div id="currencyChart" style="display: none">
-    <canvas id="myChart" width="200px" height="50px"></canvas>
+    <canvas id="myChart" width="90%" height="30%"></canvas>
 </div>
 
 <div style="display: none" id="button">
@@ -40,5 +47,37 @@
             <a href="#" class="close">Закрыть окно</a>
         </div>
 </div>
+<div id="body">
+    <div id="chat-circle" class="btn btn-raised">
+        <div id="chat-overlay"></div>
+        <i class="material-icons">speaker_phone</i>
+    </div>
+    <div class="chat-box">
+        <div class="chat-box-header">
+            Консультант
+            <span class="chat-box-toggle"><i
+                class="material-icons">close</i></span>
+        </div>
+        <div class="chat-box-body">
+            <div class="chat-box-overlay"></div>
+            <div class="chat-logs">
+
+            </div>
+            <!-- log-->
+        </div>
+        <div class="chat-input">
+            <form>
+                <input type="text" id="chat-input" placeholder="Send a message...">
+                <button type="submit" class="chat-submit" id="chat-submit">
+                    <i class="material-icons">send</i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'></script>
+<script src="js/index.js"></script>
 </body>
 </html>
