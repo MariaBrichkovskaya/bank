@@ -18,15 +18,15 @@
 </head>
 
 <body onload="newChart(); init();">
-<h1 style="text-align: center">Информация о курсах валют</h1>
-    <select id="select" onchange="updateInfo()">
+<h1 class="header">Информация о курсах валют</h1>
+    <select class="selector" id="select" onchange="updateInfo()">
         <option value="">Выберите валюту</option>
         <#list currencies as cur>
             <option value="${cur.id}">${cur}</option>
         </#list>
     </select><br><br>
 
-<div id="dataDiv"></div><br><br>
+<div class="data" id="dataDiv"></div><br><br>
 <div id="currencyChart" style="display: none">
     <canvas id="myChart" width="90%" height="30%"></canvas>
 </div>

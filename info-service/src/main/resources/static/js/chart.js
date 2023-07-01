@@ -9,10 +9,10 @@ function newChart() {
     myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: [0, 1, 3],
+            labels: [],
             datasets: [{
                 label: 'Динамика выбранной валюты',
-                data: [0, 1, 3],
+                data: [],
                 backgroundColor: [
                     'rgba(0,0,0,0)'
                 ],

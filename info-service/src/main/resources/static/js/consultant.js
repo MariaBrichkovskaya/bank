@@ -13,6 +13,7 @@ function init() {
     ws.onmessage = function(event) {
         const textarea = document.getElementById("textarea");
         textarea.innerHTML = textarea.innerHTML + "<p class='consultant-msg'>"+event.data+"</p>";
+        scrollToBottom();
     };
     ws.onclose = function (event) {
     }
@@ -28,3 +29,9 @@ function sendMessage() {
     messageField.value="";
     return false;
 }
+function scrollToBottom() {
+    var textarea = document.getElementById("textarea");
+    textarea.scrollTop = textarea.scrollHeight;
+}
+
+
