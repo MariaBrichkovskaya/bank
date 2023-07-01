@@ -20,7 +20,7 @@ function updateInfo() {
         .then(
             response => response.text()
         ).then(
-        text => showChart(text)
+        text => updateChart(text)
     );
     document.getElementById("currencyChart").style.display="block";
 }

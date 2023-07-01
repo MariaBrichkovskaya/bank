@@ -1,34 +1,28 @@
-var options = {
+let myChart;
+let options = {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
 };
-function showChart(text) {
-    let dailyRateArray = JSON.parse(text);
-    let dateArray = dailyRateArray.map(dailyRate =>
-        new Date(dailyRate.Date).toLocaleString("ru", options)
-    );
-    let rateArray = dailyRateArray.map(dailyRate => dailyRate.Cur_OfficialRate);
+function newChart() {
     let ctx = document.querySelector('#myChart').getContext('2d');
-    let myChart = new Chart(ctx, {
+    myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: dateArray,
+            labels: [0, 1, 3],
             datasets: [{
                 label: 'Динамика выбранной валюты',
-                data: rateArray,
+                data: [0, 1, 3],
                 backgroundColor: [
                     'rgba(0,0,0,0)'
                 ],
                 pointBorderColor: '#b61717',
 
-                lineTension:0,
+                lineTension: 0,
                 borderColor: [
                     '#b61717',
-
                 ],
                 borderWidth: 3,
-
             }]
         },
         options: {
@@ -37,11 +31,22 @@ function showChart(text) {
             },
             tooltips: {
                 callbacks: {
-                    label: function(tooltipItem) {
+                    label: function (tooltipItem) {
                         return tooltipItem.yLabel;
                     }
                 }
             },
         }
     })
+}
+
+function updateChart(dataSets) {
+    let dailyRateArray = JSON.parse(dataSets);
+    let dateArray = dailyRateArray.map(dailyRate =>
+        new Date(dailyRate.Date).toLocaleString("ru", options)
+    );
+    let rateArray = dailyRateArray.map(dailyRate => dailyRate.Cur_OfficialRate);
+    myChart.data.labels=dateArray;
+    myChart.data.datasets[0].data=rateArray;
+    myChart.update();
 }

@@ -17,7 +17,7 @@
     <link rel="icon" href="favicon.png">
 </head>
 
-<body onload="init()">
+<body onload="newChart(); init();">
 <h1 style="text-align: center">Информация о курсах валют</h1>
     <select id="select" onchange="updateInfo()">
         <option value="">Выберите валюту</option>
@@ -63,12 +63,11 @@
             <div class="chat-logs">
 
             </div>
-            <!-- log-->
         </div>
         <div class="chat-input">
-            <form>
+            <form onsubmit="return sendMessage()">
                 <input type="text" id="chat-input" placeholder="Send a message...">
-                <button type="submit" class="chat-submit" id="chat-submit">
+                <button type="submit" class="chat-submit" id="chat-submit" onclick="sendMessage()">
                     <i class="material-icons">send</i>
                 </button>
             </form>
