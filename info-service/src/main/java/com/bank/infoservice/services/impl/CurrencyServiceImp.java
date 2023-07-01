@@ -2,18 +2,19 @@ package com.bank.infoservice.services.impl;
 
 import com.bank.infoservice.dto.CurrencyDTO;
 import com.bank.infoservice.services.CurrencyService;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
+@Slf4j
 @Service
 public class CurrencyServiceImp implements CurrencyService {
     static CurrencyDTO model = new CurrencyDTO();
@@ -24,7 +25,7 @@ public class CurrencyServiceImp implements CurrencyService {
         Date fiveDaysAgo = calendar.getTime();
         return httpDateFormat.format(fiveDaysAgo);
     }
-    public JSONArray getCurrencyDynamic(String message) throws IOException{
+    public JSONArray getCurrencyDynamic(String message){
         try {
             String dynamicUrl = "https://api.nbrb.by/exrates/rates/dynamics/";
             URL url = new URL( dynamicUrl + message+"?startDate="+getStartDate()+"&endDate="+httpDateFormat.format(new Date()));
@@ -36,13 +37,13 @@ public class CurrencyServiceImp implements CurrencyService {
             return new JSONArray(result.toString());
 
 
-        } catch (FileNotFoundException e){ // что-то замутить
-
+        } catch (IOException e){ // что-то замутить
+            log.info("Ссылка не работает");
             return new JSONArray();
         }
 
     }
-    public CurrencyDTO getCurrencyRate(String message) throws IOException, ParseException {
+    public CurrencyDTO getCurrencyRate(String message) throws  ParseException {
         try {
             String currencyUrl = " https://api.nbrb.by/exrates/rates/";
             URL url = new URL(currencyUrl + message);
@@ -60,10 +61,10 @@ public class CurrencyServiceImp implements CurrencyService {
             model.setCur_Name(object.getString("Cur_Name"));
             model.setCur_OfficialRate(object.getDouble("Cur_OfficialRate"));
             //if(model.getCur_ID()==null) return null;
-        } catch (FileNotFoundException e){ // что-то замутить
-
+        } catch (IOException e){ // что-то замутить
+            log.info("Ссылка не работает");
         }
-        return model;
+        return model.getCur_ID()==null?null:model;
 
     }
 
