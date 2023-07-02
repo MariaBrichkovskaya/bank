@@ -49,7 +49,7 @@
         </div>
         <div class="chat-input">
             <form onsubmit="return sendMessage()">
-                <input type="text" id="chat-input" placeholder="Send a message...">
+                <input  oninput="validateInput()" type="text" id="chat-input" autocomplete="off"  placeholder="Send a message...">
                 <button class="chat-submit" id="chat-submit">
                     <i class="material-icons">send</i>
                 </button>

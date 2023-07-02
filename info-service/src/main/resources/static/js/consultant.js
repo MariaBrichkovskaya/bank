@@ -18,11 +18,14 @@ function init() {
     ws.onclose = function (event) {
     }
 }
-/*<button className="fc-close" tabIndex="0">
-    <div className="fc-close-background"></div>
-    <i className="material-icons fc-close-icon" translate="no">cancel</i></button>*/
+function validateInput() {
+    const messageField = document.getElementById("chat-input");
+    if(messageField.value.at(0)===" ") messageField.value="";
+}
+
 function sendMessage() {
     const messageField = document.getElementById("chat-input");
+    if(messageField.value==="" || messageField.value.at(0)===" ") return false;
     ws.send(messageField.value);
     const textArea = document.getElementById("textarea");
     textArea.innerHTML = textArea.innerHTML + "<p class='user-msg'>" + messageField.value + "</p>";
