@@ -8,5 +8,5 @@ public interface CardService {
     Card getCardById(Long id);
     boolean addCard(Card card);
     List<Card> getAll();
-    List<Card> getCarsdByUserId(Long userId);
+    List<Card> getCardsByUserId(Long userId);
 }

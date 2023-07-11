@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -25,7 +26,7 @@ public class Card {
     Long clientId;
     @Column(columnDefinition = "boolean default false")
     Boolean locked;
-    Float balance;
+    BigDecimal balance;
 
 
 }

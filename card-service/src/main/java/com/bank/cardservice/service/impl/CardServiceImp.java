@@ -27,7 +27,7 @@ public class CardServiceImp implements CardService {
         return cardRepository.findAll();
     }
 
-    public List<Card> getCarsdByUserId(Long userId) {
+    public List<Card> getCardsByUserId(Long userId) {
         return cardRepository.findByClientId(userId);
     }
 }

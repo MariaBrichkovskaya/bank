@@ -17,7 +17,7 @@ public class CardController {
 
     @GetMapping
     public ResponseEntity<List<Card>> getCards(@RequestParam (required=false) Long userId) {
-        if(userId != null) return ResponseEntity.ok(cardService.getCarsdByUserId(userId));
+        if(userId != null) return ResponseEntity.ok(cardService.getCardsByUserId(userId));
         List<Card> listCards = cardService.getAll();
         if(listCards != null) return ResponseEntity.ok().body(listCards);
         return ResponseEntity.noContent().build();

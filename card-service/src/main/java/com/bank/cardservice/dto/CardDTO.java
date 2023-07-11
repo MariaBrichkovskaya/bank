@@ -3,6 +3,7 @@ package com.bank.cardservice.dto;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -17,5 +18,5 @@ public class CardDTO {
     LocalDate expiryDate;
     Long clientId;
     Boolean locked;
-    Float balance;
+    BigDecimal balance;
 }
