@@ -1,14 +1,18 @@
 package com.bank.cardservice.service.impl;
 
+import com.bank.cardservice.dto.TransferDTO;
 import com.bank.cardservice.model.Card;
 import com.bank.cardservice.repository.CardRepository;
 import com.bank.cardservice.service.BalanceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
 @RequiredArgsConstructor
+@Service
 @Slf4j
 public class BalanceServiceImp implements BalanceService{
     private final CardRepository cardRepository;
@@ -27,5 +31,11 @@ public class BalanceServiceImp implements BalanceService{
         userTo.setBalance(newBalance);
         log.info("Transfer to {} {}",to,sum);
 
+    }
+
+    @Transactional
+    public void transferOperation(TransferDTO transfer) {
+        moneyTransfer(transfer.getFrom(),transfer.getSum());
+        moneyReceive(transfer.getTo(),transfer.getSum());
     }
 }

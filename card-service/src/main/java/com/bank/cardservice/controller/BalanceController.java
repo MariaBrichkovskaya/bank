@@ -1,5 +1,6 @@
 package com.bank.cardservice.controller;
 
+import com.bank.cardservice.dto.TransferDTO;
 import com.bank.cardservice.service.impl.BalanceServiceImp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -11,14 +12,13 @@ import java.math.BigDecimal;
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("/balance")
+@RequestMapping
 public class BalanceController {
     private final BalanceServiceImp balanceService;
-    @PostMapping() //я жестко хз какой тут адрес придумай пж у меня стресс
-    private void transfer(@RequestParam String from,@RequestParam String to,@RequestParam BigDecimal sum){
+    @PostMapping("/transfer")
+    private void transfer(TransferDTO transfer){
         //транзакция
-        balanceService.moneyTransfer(from,sum);
-        balanceService.moneyReceive(to,sum);
+        balanceService.transferOperation(transfer);
     }
 
 }
