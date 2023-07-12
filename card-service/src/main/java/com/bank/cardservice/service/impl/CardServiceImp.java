@@ -30,4 +30,12 @@ public class CardServiceImp implements CardService {
     public List<Card> getCardsByUserId(Long userId) {
         return cardRepository.findByClientId(userId);
     }
+
+    public boolean changeLockedStatus(Long id) {
+        Card card = cardRepository.findById(id).orElse(null);
+        if (card == null) return false;
+        card.setLocked(!card.getLocked());
+        cardRepository.save(card);
+        return true;
+    }
 }
