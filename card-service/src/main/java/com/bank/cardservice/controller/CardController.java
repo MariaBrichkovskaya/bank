@@ -33,4 +33,10 @@ public class CardController {
         if (cardService.addCard(card)) return ResponseEntity.ok().body("Card has been successfully saved");
         return ResponseEntity.badRequest().body("Can't add card with id " + card.getId());
     }
+
+    @PostMapping("/block/{id}")
+    public ResponseEntity<String> changeLockedStatus(@PathVariable Long id) {
+        if (cardService.changeLockedStatus(id)) return ResponseEntity.ok().body("Card's status has been successfully changed");
+        return ResponseEntity.badRequest().body("Can't change status of card with id " + id);
+    }
 }
