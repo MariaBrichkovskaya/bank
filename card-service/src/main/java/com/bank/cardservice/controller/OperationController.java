@@ -23,4 +23,8 @@ public class OperationController {
         System.err.println(cardNumber);
         return new ResponseEntity<>(operations, HttpStatus.OK);
     }
+    @GetMapping
+    private String a(){
+        return "card";
+    }
 }

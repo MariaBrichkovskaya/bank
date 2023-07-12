@@ -1,0 +1,78 @@
+body {
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    width: 400px;
+    height: 250px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    position: relative;
+}
+
+.bank-name {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.logo {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 10px;
+}
+
+.logo img {
+    width: 80px;
+}
+
+.expiry-date {
+    padding: 20px;
+    position: absolute;
+    top: 65%;
+}
+.cardholder-name{
+    padding: 20px;
+    position: absolute;
+    top: 73%;
+}
+
+.card-number {
+    padding: 20px;
+    font-size: 30px;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.expiry-date {
+    font-size: 14px;
+    color: gray;
+}
+
+.cardholder-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.chip {
+    position: absolute;
+    top: 50%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    right: 20px;
+    width: 45px;
+    height: 45px;
+}
