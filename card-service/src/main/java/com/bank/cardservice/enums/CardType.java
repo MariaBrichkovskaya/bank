@@ -1,6 +1,6 @@
 package com.bank.cardservice.enums;
 
-public enum TypeEnum {
+public enum CardType {
     VISA,
     MASTER
 

@@ -1,6 +1,6 @@
 package com.bank.cardservice.model;
 
-import com.bank.cardservice.enums.TypeEnum;
+import com.bank.cardservice.enums.CardType;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -28,7 +28,9 @@ public class Card {
     @Column(columnDefinition = "boolean default false")
     Boolean locked;
     BigDecimal balance;
-    TypeEnum type;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
+    CardType type;
 
 
 }

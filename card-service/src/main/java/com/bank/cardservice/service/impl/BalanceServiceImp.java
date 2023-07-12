@@ -1,6 +1,8 @@
 package com.bank.cardservice.service.impl;
 
+import com.bank.cardservice.dto.OperationDTO;
 import com.bank.cardservice.dto.TransferDTO;
+import com.bank.cardservice.enums.OperationType;
 import com.bank.cardservice.exceptions.TransferException;
 import com.bank.cardservice.model.Card;
 import com.bank.cardservice.repository.CardRepository;
@@ -17,6 +19,7 @@ import java.math.BigDecimal;
 @Slf4j
 public class BalanceServiceImp implements BalanceService{
     private final CardRepository cardRepository;
+    private final OperationServiceImp operationService;
     private final BigDecimal COMMISSION= BigDecimal.valueOf(0.02);
     @Override
     public void moneyTransfer(String from, BigDecimal sum,String to) throws TransferException {
@@ -37,6 +40,13 @@ public class BalanceServiceImp implements BalanceService{
         }
         BigDecimal newBalance=userFrom.getBalance().subtract(sum).subtract(commission);
         userFrom.setBalance(newBalance);
+        operationService.commitOperation(
+                OperationDTO.builder()
+                        .cardNumber(from)
+                        .sum(sum)
+                        .type(OperationType.TRANSFER)
+                        .build()
+        );
         log.info("Transfer from {} {} rub",from,sum);
     }
 
@@ -47,6 +57,13 @@ public class BalanceServiceImp implements BalanceService{
             throw new TransferException("Карта, на которую осуществляется перевод, заблокирована");
         BigDecimal newBalance=userTo.getBalance().add(sum);
         userTo.setBalance(newBalance);
+        operationService.commitOperation(
+                OperationDTO.builder()
+                        .cardNumber(to)
+                        .sum(sum)
+                        .type(OperationType.RECEIVE)
+                        .build()
+        );
         log.info("Transfer to {} {} rub",to,sum);
 
     }
