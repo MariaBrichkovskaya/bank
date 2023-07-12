@@ -22,5 +22,4 @@ function updateInfo() {
         ).then(
         text => updateChart(text)
     );
-    document.getElementById("currencyChart").style.display="block";
 }

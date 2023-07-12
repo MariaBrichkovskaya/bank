@@ -48,4 +48,5 @@ function updateChart(dataSets) {
     myChart.data.labels=dateArray;
     myChart.data.datasets[0].data=rateArray;
     myChart.update();
+    document.getElementById("currencyChart").style.display="block";
 }
