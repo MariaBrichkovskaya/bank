@@ -21,7 +21,7 @@ public class CurrencyServiceImp implements CurrencyService {
     SimpleDateFormat httpDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     public String getStartDate(){
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_YEAR, -5);
+        calendar.add(Calendar.DAY_OF_YEAR, -30);
         Date fiveDaysAgo = calendar.getTime();
         return httpDateFormat.format(fiveDaysAgo);
     }
