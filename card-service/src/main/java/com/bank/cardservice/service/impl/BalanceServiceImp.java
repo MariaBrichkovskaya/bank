@@ -21,8 +21,10 @@ public class BalanceServiceImp implements BalanceService{
     public void moneyTransfer(String from, BigDecimal sum) throws TransferException {
 
         Card userFrom=cardRepository.findByNumber(from);
-        if (sum.compareTo(userFrom.getBalance())==1||sum.compareTo(BigDecimal.valueOf(0))<1)
-            throw new TransferException();
+        if (sum.compareTo(userFrom.getBalance())==1)
+            throw new TransferException("Недостаточно средств");
+        if (sum.compareTo(BigDecimal.valueOf(0))<1)
+            throw new TransferException("Некорректная сумма перевода");
         BigDecimal newBalance=userFrom.getBalance().subtract(sum);
         userFrom.setBalance(newBalance);
         log.info("Transfer from {} {}",from,sum);
@@ -38,16 +40,17 @@ public class BalanceServiceImp implements BalanceService{
     }
 
     @Transactional
-    public void transferOperation(TransferDTO transfer){
+    public boolean transferOperation(TransferDTO transfer){
         try {
             moneyTransfer(transfer.getFrom(),transfer.getSum());
             moneyReceive(transfer.getTo(),transfer.getSum());
         }catch (NullPointerException e){
             System.err.println("ноль даун");
-
+            return false;
         }catch (TransferException t){
-            System.err.println("меньше чем надо");
+            System.err.println(t.getMessage());
+            return false;
         }
-
+        return true;
     }
 }

@@ -3,6 +3,7 @@ package com.bank.cardservice.controller;
 import com.bank.cardservice.dto.TransferDTO;
 import com.bank.cardservice.service.impl.BalanceServiceImp;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BalanceController {
     private final BalanceServiceImp balanceService;
     @PostMapping("/transfer")
-    private void transfer(TransferDTO transfer){
-        //транзакция
-        balanceService.transferOperation(transfer);
+    private ResponseEntity<String> transfer(TransferDTO transfer){
+        if (balanceService.transferOperation(transfer)) return ResponseEntity.ok().body("Money transfer was successful");
+        return ResponseEntity.badRequest().body("Money transfer error");
     }
 
 }
