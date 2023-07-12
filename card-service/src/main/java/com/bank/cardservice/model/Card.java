@@ -1,5 +1,6 @@
 package com.bank.cardservice.model;
 
+import com.bank.cardservice.enums.TypeEnum;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class Card {
     @Column(columnDefinition = "boolean default false")
     Boolean locked;
     BigDecimal balance;
+    TypeEnum type;
 
 
 }

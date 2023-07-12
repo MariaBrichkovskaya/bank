@@ -1,5 +1,6 @@
 package com.bank.cardservice.dto;
 
+import com.bank.cardservice.enums.TypeEnum;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -19,4 +20,5 @@ public class CardDTO {
     Long clientId;
     Boolean locked;
     BigDecimal balance;
+    TypeEnum typeEnum;
 }
