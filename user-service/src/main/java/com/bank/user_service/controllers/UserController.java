@@ -49,4 +49,11 @@ public class UserController {
         userService.editUser(user, id);
         return ResponseEntity.ok("Update user.");
     }
+
+    @GetMapping("/fullName/{id}")
+    public ResponseEntity<String> getUserFullNameById(@PathVariable("id") Long id) {
+        User user = userService.getUserById(id).get();
+        if (user!=null) return ResponseEntity.ok(user.getName() + " " + user.getSurname());
+        return ResponseEntity.noContent().build();
+    }
 }

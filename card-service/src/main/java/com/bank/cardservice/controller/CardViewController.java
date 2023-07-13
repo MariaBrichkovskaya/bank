@@ -20,6 +20,7 @@ public class CardViewController {
     private String getCards(@RequestParam(required = false) Long userId, Model model){
         List<Card> cards = cardService.getCardsByUserId(userId);
         model.addAttribute("cards", cards);
+        model.addAttribute("ownerName", cardService.getOwnerFullName(userId).toUpperCase());
         return "card";
     }
 }

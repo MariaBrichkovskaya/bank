@@ -26,7 +26,7 @@
             <#assign formattedMonth = card.expiryDate.month.value?string("00")>
             <#assign formattedYear = card.expiryDate.year?string("0000")>
             <div class="expiry-date">${formattedMonth}/${formattedYear} </div>
-            <div class="cardholder-name">${card.clientId}</div>
+            <div class="cardholder-name">${ownerName}</div>
         </div>
         <img class="chip" src="chip.png" alt="Chip">
     </div>

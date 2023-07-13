@@ -97,10 +97,6 @@ public class UserServiceImp implements UserService {
 
     private Set<CardDTO> getCardsForUser(Long userId) {
         return webClient.get()
-                /*.uri(uriBuilder -> uriBuilder
-                        .path(CARD_MODULE_URI)
-                        .queryParam("userId", userId)
-                        .build())*/
                 .uri(CARD_MODULE_URI + "?userId=" + userId)
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<Set<CardDTO>>() {})
