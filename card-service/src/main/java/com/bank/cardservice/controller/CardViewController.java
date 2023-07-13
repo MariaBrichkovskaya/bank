@@ -17,7 +17,7 @@ public class CardViewController {
     private final CardServiceImp cardService;
 
     @GetMapping("/view")
-    private String a(@RequestParam(required = false) Long userId, Model model){
+    private String getCards(@RequestParam(required = false) Long userId, Model model){
         List<Card> cards = cardService.getCardsByUserId(userId);
         model.addAttribute("cards", cards);
         return "card";
