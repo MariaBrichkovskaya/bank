@@ -5,6 +5,7 @@ import com.bank.cardservice.model.Card;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,4 +40,6 @@ public class CardController {
         if (cardService.changeLockedStatus(id)) return ResponseEntity.ok().body("Card's status has been successfully changed");
         return ResponseEntity.badRequest().body("Can't change status of card with id " + id);
     }
+
+
 }

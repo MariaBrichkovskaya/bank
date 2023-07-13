@@ -9,11 +9,11 @@ body {
 .card {
     width: 400px;
     height: 250px;
-    background-color: white;
+    background-color: #c0e8d4;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    position: relative;
+    position: absolute;
+    transition: all 0.3s  ease-out;
 }
 
 .bank-name {
@@ -25,11 +25,10 @@ body {
 }
 
 .logo {
+    position: absolute;
+    right: 0;
     width: 30%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    padding: 10px;
+    top: 20px;
 }
 
 .logo img {
@@ -37,8 +36,8 @@ body {
 }
 
 .expiry-date {
-    padding: 20px;
     position: absolute;
+    padding: 20px;
     top: 65%;
 }
 .cardholder-name{
@@ -48,31 +47,38 @@ body {
 }
 
 .card-number {
-    padding: 20px;
+    padding-left: 25px;
     font-size: 30px;
     position: absolute;
-    top: 65%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%)
+    font-family: "Courier New";
+    top: 55%;
 }
 
 .expiry-date {
-    font-size: 14px;
-    color: gray;
+    top: 73%;
+    right: 15px;
+    position: absolute;
+    font-size: 16px;
 }
 
 .cardholder-name {
+    position: absolute;
     font-size: 16px;
     font-weight: bold;
 }
 
 .chip {
     position: absolute;
-    top: 50%;
-    left: 85%;
-    transform: translate(-50%, -50%);
-    right: 20px;
+    top: 35%;
+    left: 5%;
     width: 45px;
     height: 45px;
+}
+
+.carousel {
+    position: relative;
+    width: 400px;
+    height: 250px;
+    perspective: 500px;
+    transform-style: preserve-3d;
 }
