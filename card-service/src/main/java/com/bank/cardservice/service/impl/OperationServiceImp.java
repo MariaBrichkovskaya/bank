@@ -30,18 +30,9 @@ public class OperationServiceImp implements OperationService {
         return operations.toList();
     }
     @Override
-    public void commitOperation(OperationDTO operation) {
-        String card = operation.getCardNumber();
-
-        operationRepository.save(
-                Operation.builder()
-                        .id(operation.getId())
-                        .sum(operation.getSum())
-                        .type(operation.getType())
-                        .cardNumber(card)
-                        .build()
-        );
-        log.info("Save operation. card: {}", card);
+    public void commitOperation(Operation operation) {
+        operationRepository.save(operation);
+        log.info("Save operation. card: {}", operation.getCardNumber());
     }
 
 }
