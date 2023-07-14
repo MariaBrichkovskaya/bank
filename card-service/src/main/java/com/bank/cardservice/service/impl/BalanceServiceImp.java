@@ -32,7 +32,7 @@ public class BalanceServiceImp implements BalanceService{
     private static final String INFO_MODULE_URI = "http://localhost:9090/cur/";
     private final WebClient webClient;
     BigDecimal commission= BigDecimal.valueOf(0);
-    void validation(Card userFrom,Card userTo,BigDecimal sum) throws TransferException {
+    private void validation(Card userFrom,Card userTo,BigDecimal sum) throws TransferException {
         if (sum.compareTo(userFrom.getBalance()) > 0)
             throw new TransferException("Недостаточно средств");
         if (sum.compareTo(BigDecimal.valueOf(0))<1)
@@ -41,29 +41,22 @@ public class BalanceServiceImp implements BalanceService{
             throw new TransferException("Карта, с которой осуществляется перевод, заблокирована");
 
     }
-    private Double getOneCoefficient(Card card){
-        String value=webClient.get()
+    private Double getBynCoefficient(Card card){
+        String value=getCurToByn(card);
+        assert value != null;
+        return Double.parseDouble(value);
+    }
+    private String getCurToByn(Card card){
+        return webClient.get()
                 .uri(INFO_MODULE_URI + card.getCurrency().getId())
                 .retrieve()
                 .bodyToMono(String.class)
                 .retryWhen(Retry.fixedDelay(3, Duration.ofMillis(100)))
                 .block();
-        return Double.parseDouble(value);
     }
     private Double getCoefficient(Card userFrom,Card userTo){
-
-            String from= webClient.get()
-                    .uri(INFO_MODULE_URI + userFrom.getCurrency().getId())
-                    .retrieve()
-                    .bodyToMono(String.class)
-                    .retryWhen(Retry.fixedDelay(3, Duration.ofMillis(100)))
-                    .block();
-            String to=webClient.get()
-                    .uri(INFO_MODULE_URI + userTo.getCurrency().getId())
-                    .retrieve()
-                    .bodyToMono(String.class)
-                    .retryWhen(Retry.fixedDelay(3, Duration.ofMillis(100)))
-                    .block();
+            String from= getCurToByn(userFrom);
+            String to= getCurToByn(userTo);
             return Double.parseDouble(from)/Double.parseDouble(to);
     }
     private BigDecimal getSum(Card userFrom, Card userTo, BigDecimal sum){
@@ -74,8 +67,8 @@ public class BalanceServiceImp implements BalanceService{
         }
         if(!userFrom.getCurrency().equals(userTo.getCurrency())){
             return ((!userFrom.getCurrency().name().equals("BYN"))?
-                    sum.multiply(BigDecimal.valueOf(getOneCoefficient(userFrom))):
-                    sum.divide(BigDecimal.valueOf(getOneCoefficient(userTo)),4, RoundingMode.HALF_UP));
+                    sum.multiply(BigDecimal.valueOf(getBynCoefficient(userFrom))):
+                    sum.divide(BigDecimal.valueOf(getBynCoefficient(userTo)),4, RoundingMode.HALF_UP));
         }
         return sum;
 

@@ -4,14 +4,12 @@ import com.bank.cardservice.model.Card;
 import com.bank.cardservice.repository.CardRepository;
 import com.bank.cardservice.service.CardService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.util.retry.Retry;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor

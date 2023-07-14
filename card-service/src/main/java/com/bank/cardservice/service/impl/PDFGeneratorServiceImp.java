@@ -1,6 +1,6 @@
 package com.bank.cardservice.service.impl;
 
-import com.bank.cardservice.dto.OperationDTO;
+
 import com.bank.cardservice.model.Operation;
 import com.bank.cardservice.service.PDFGeneratorService;
 import com.lowagie.text.*;
@@ -11,9 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
+
 
 
 @Service
