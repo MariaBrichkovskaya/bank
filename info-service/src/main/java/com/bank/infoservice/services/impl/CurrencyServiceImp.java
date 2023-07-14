@@ -18,6 +18,14 @@ import java.util.*;
 @Service
 public class CurrencyServiceImp implements CurrencyService {
     static CurrencyDTO model = new CurrencyDTO();
+    private void setCurrency(JSONObject object) throws ParseException {
+        model.setCur_ID(object.getInt("Cur_ID"));
+        model.setDate(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(object.getString("Date")));
+        model.setCur_Abbreviation(object.getString("Cur_Abbreviation"));
+        model.setCur_Scale(object.getInt("Cur_Scale"));
+        model.setCur_Name(object.getString("Cur_Name"));
+        model.setCur_OfficialRate(object.getDouble("Cur_OfficialRate"));
+    }
     SimpleDateFormat httpDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     public String getStartDate(){
         Calendar calendar = Calendar.getInstance();
@@ -54,12 +62,7 @@ public class CurrencyServiceImp implements CurrencyService {
                 result.append(scanner.nextLine());
             }
             JSONObject object = new JSONObject(result.toString());
-            model.setCur_ID(object.getInt("Cur_ID"));
-            model.setDate(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(object.getString("Date")));
-            model.setCur_Abbreviation(object.getString("Cur_Abbreviation"));
-            model.setCur_Scale(object.getInt("Cur_Scale"));
-            model.setCur_Name(object.getString("Cur_Name"));
-            model.setCur_OfficialRate(object.getDouble("Cur_OfficialRate"));
+            setCurrency(object);
             //if(model.getCur_ID()==null) return null;
         } catch (IOException e){ // что-то замутить
             log.info("Ссылка не работает");

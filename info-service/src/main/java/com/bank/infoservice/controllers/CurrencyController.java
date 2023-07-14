@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.List;
 
@@ -41,6 +42,12 @@ public class CurrencyController {
                 currencyDTO.getCur_OfficialRate() + " BYN за "
                         + currencyDTO.getCur_Scale() + " "
                         + currencyDTO.getCur_Name());
+    }
+    @GetMapping("/cur/{currencyId}")
+    public ResponseEntity<Double> getCurRate(@PathVariable String currencyId) throws ParseException {
+        CurrencyDTO currencyDTO = currencyService.getCurrencyRate(currencyId);
+        Double curPerUnit=currencyDTO.getCur_OfficialRate()/currencyDTO.getCur_Scale();
+        return ResponseEntity.ok(curPerUnit);
     }
 
 }

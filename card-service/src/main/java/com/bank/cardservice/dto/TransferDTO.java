@@ -1,5 +1,6 @@
 package com.bank.cardservice.dto;
 
+import com.bank.cardservice.enums.CurType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.RequestParam;

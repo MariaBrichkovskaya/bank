@@ -1,6 +1,7 @@
 package com.bank.cardservice.model;
 
 import com.bank.cardservice.enums.CardType;
+import com.bank.cardservice.enums.CurType;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -31,6 +32,9 @@ public class Card {
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
     CardType type;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "cur_type")
+    CurType currency;
 
 
 }
