@@ -41,22 +41,41 @@ public class BalanceServiceImp implements BalanceService{
             throw new TransferException("Карта, с которой осуществляется перевод, заблокирована");
 
     }
-    private Double getCoefficient(Card user){
+    private Double getOneCoefficient(Card card){
+        String value=webClient.get()
+                .uri(INFO_MODULE_URI + card.getCurrency().getId())
+                .retrieve()
+                .bodyToMono(String.class)
+                .retryWhen(Retry.fixedDelay(3, Duration.ofMillis(100)))
+                .block();
+        return Double.parseDouble(value);
+    }
+    private Double getCoefficient(Card userFrom,Card userTo){
 
-            String client= webClient.get()
-                    .uri(INFO_MODULE_URI + user.getCurrency().getId())
+            String from= webClient.get()
+                    .uri(INFO_MODULE_URI + userFrom.getCurrency().getId())
                     .retrieve()
                     .bodyToMono(String.class)
                     .retryWhen(Retry.fixedDelay(3, Duration.ofMillis(100)))
                     .block();
-            return Double.parseDouble(client);
+            String to=webClient.get()
+                    .uri(INFO_MODULE_URI + userTo.getCurrency().getId())
+                    .retrieve()
+                    .bodyToMono(String.class)
+                    .retryWhen(Retry.fixedDelay(3, Duration.ofMillis(100)))
+                    .block();
+            return Double.parseDouble(from)/Double.parseDouble(to);
     }
     private BigDecimal getSum(Card userFrom, Card userTo, BigDecimal sum){
-        if (!userFrom.getCurrency().equals(userTo.getCurrency()))
+        if (!userFrom.getCurrency().equals(userTo.getCurrency())&&!userFrom.getCurrency().name().equals("BYN")&&(!userTo.getCurrency().name().equals("BYN")))
         {
-            return (!userFrom.getCurrency().getId().equals("0")?
-                    sum.multiply(BigDecimal.valueOf(getCoefficient(userFrom))):
-                    sum.divide(BigDecimal.valueOf(getCoefficient(userTo)),4, RoundingMode.HALF_UP));
+            return sum.multiply(BigDecimal.valueOf(getCoefficient(userFrom,userTo)));
+
+        }
+        if(!userFrom.getCurrency().equals(userTo.getCurrency())){
+            return ((!userFrom.getCurrency().name().equals("BYN"))?
+                    sum.multiply(BigDecimal.valueOf(getOneCoefficient(userFrom))):
+                    sum.divide(BigDecimal.valueOf(getOneCoefficient(userTo)),4, RoundingMode.HALF_UP));
         }
         return sum;
 
