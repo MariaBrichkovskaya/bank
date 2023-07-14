@@ -32,13 +32,13 @@ public class PDFGeneratorServiceImp implements PDFGeneratorService {
             title.setAlignment(Paragraph.ALIGN_RIGHT);
 
             Font fontContent = FontFactory.getFont(FontFactory.TIMES_ROMAN, 20);
-            Paragraph date = new Paragraph("Дата " +operation.getDate().toString());
-            Paragraph time = new Paragraph("Время " +operation.getTime());
-            Paragraph card = new Paragraph("Карта для операции " +operation.getCardNumber());
-            Paragraph sum = new Paragraph("Сумма перевода " +operation.getSum());
-            Paragraph commission = new Paragraph("Комиссия " +operation.getSum());
-            Paragraph fullSum = new Paragraph("Сумма к оплате " +operation.getSum());
-            Paragraph checkId = new Paragraph("Номер чека " +operation.getId());
+            Paragraph date = new Paragraph("Дата " +operation.getDate().toString(),fontContent);
+            Paragraph time = new Paragraph("Время " +operation.getTime(),fontContent);
+            Paragraph card = new Paragraph("Карта для операции " +operation.getCardNumber(),fontContent);
+            Paragraph sum = new Paragraph("Сумма перевода " +operation.getSum(),fontContent);
+            Paragraph commission = new Paragraph("Комиссия " +operation.getSum(),fontContent);
+            Paragraph fullSum = new Paragraph("Сумма к оплате " +operation.getSum(),fontContent);
+            Paragraph checkId = new Paragraph("Номер чека " +operation.getId(),fontContent);
             document.add(title);
             document.add(date);
             document.add(time);
