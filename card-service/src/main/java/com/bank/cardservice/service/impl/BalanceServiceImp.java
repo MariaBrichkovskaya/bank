@@ -8,6 +8,7 @@ import com.bank.cardservice.model.Operation;
 import com.bank.cardservice.repository.CardRepository;
 import com.bank.cardservice.service.BalanceService;
 import jakarta.mail.MessagingException;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -87,9 +88,18 @@ public class BalanceServiceImp implements BalanceService{
 
         Operation operation=getTransferOperation(userFrom,sum,from);
         operationService.commitOperation(operation);
-        pdfGeneratorService.exportOperationInfoInPDF(operation);
-        mailSenderService.sendEmailWithAttachment("dima427614@gmail.com", "Чек о переводе денег", "Ваш чек", "./card-service/src/main/resources/operation-checks/Operation" + operation.getId() + ".pdf");
-        log.info("Transfer from {} {} rub",from,sum);
+        Thread thread = new Thread(()->
+        { pdfGeneratorService.exportOperationInfoInPDF(operation);
+            try {
+                mailSenderService.sendEmailWithAttachment("dima427614@gmail.com", "Чек о переводе денег", "Ваш чек", "./card-service/src/main/resources/operation-checks/Operation" + operation.getId() + ".pdf");
+            } catch (MessagingException e) {
+                throw new RuntimeException(e);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        } );
+        thread.start();
+         log.info("Transfer from {} {} rub",from,sum);
     }
     private Operation getTransferOperation(Card userFrom,BigDecimal sum,String from){
         BigDecimal newBalance=userFrom.getBalance().subtract(sum).subtract(commission);
