@@ -9,4 +9,7 @@ public interface CardService {
     boolean addCard(Card card);
     List<Card> getAll();
     List<Card> getCardsByUserId(Long userId);
+    boolean changeLockedStatus(Long id);
+
+    String getOwnerFullName(Long userId);
 }

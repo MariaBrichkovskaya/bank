@@ -1,7 +1,7 @@
 package com.bank.cardservice.controller;
 
 import com.bank.cardservice.dto.OperationDTO;
-import com.bank.cardservice.service.impl.OperationServiceImp;
+import com.bank.cardservice.service.OperationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class OperationController {
-    private final OperationServiceImp operationService;
+    private final OperationService operationService;
     @GetMapping("/operations")
     private ResponseEntity<List<OperationDTO>> getOperations(@RequestParam(name = "card", required = false) String cardNumber){
         List<OperationDTO> operations = operationService.getOperationsByCard(cardNumber);

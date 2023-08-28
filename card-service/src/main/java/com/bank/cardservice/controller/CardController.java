@@ -1,11 +1,9 @@
 package com.bank.cardservice.controller;
 
-import com.bank.cardservice.service.impl.CardServiceImp;
+import com.bank.cardservice.service.CardService;
 import com.bank.cardservice.model.Card;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +12,7 @@ import java.util.List;
 @RequestMapping("/cards")
 @RequiredArgsConstructor
 public class CardController {
-    private final CardServiceImp cardService;
+    private final CardService cardService;
 
     @GetMapping
     public ResponseEntity<List<Card>> getCards(@RequestParam (required=false) Long userId) {
