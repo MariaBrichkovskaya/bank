@@ -24,4 +24,13 @@ public class CardExceptionHandler {
         );
         return new ResponseEntity<>(cardException,cardException.getHttpStatus());
     }
+    @ExceptionHandler(value = {TransferException.class})
+    public ResponseEntity<Object> handleTransferException(TransferException transferException){
+        CardException cardException= new CardException(
+                transferException.getMessage(),
+                transferException.getCause(), HttpStatus.CONFLICT
+        );
+        return new ResponseEntity<>(cardException,cardException.getHttpStatus());
+    }
+
 }
